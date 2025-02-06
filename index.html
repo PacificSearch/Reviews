@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pacific Search</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header: Blue Ribbon with Logo and Language Switcher -->
+  <!-- Header with Blue Ribbon -->
   <header>
-    <div class="logo">"Pacific Search"</div>
+    <nav class="logo">Pacific Search</nav>
     <div class="language-switcher">
-      <button id="englishBtn" class="active">English</button>
-      <button id="hinglishBtn">Hinglish</button>
+      <button id="english-btn" class="active">English</button>
+      <button id="hinglish-btn">Hinglish</button>
     </div>
   </header>
   
   <!-- Search Bar -->
-  <div class="search-container">
-    <input type="text" placeholder="Search..." />
-  </div>
+  <section class="search-container">
+    <input type="text" placeholder="Search...">
+  </section>
   
-  <!-- Marquee Welcome Message -->
+  <!-- Scrolling Welcome Message -->
   <div class="marquee-container">
     <div class="marquee">
       Welcome to Pacific Search | Find detailed reviews for your favorite products. Use the filters or search bar to get started!
     </div>
   </div>
   
-  <!-- Main Layout: Sidebar and Content -->
-  <div class="container">
-    <!-- Sidebar: Filter Options -->
+  <!-- Main Layout: Sidebar Filters and Content -->
+  <main class="container">
+    <!-- Sidebar Filter Section -->
     <aside class="sidebar">
-      <!-- Cars Filter Category -->
-      <div class="filter-category">
+      <!-- Cars Filter -->
+      <section class="filter-category">
         <h3 onclick="toggleSubOptions(this)">Cars</h3>
         <ul class="sub-options">
           <li>Sedan</li>
@@ -41,9 +41,9 @@
           <li>Hatchback</li>
           <li>Coupe</li>
         </ul>
-      </div>
-      <!-- Mobiles Filter Category -->
-      <div class="filter-category">
+      </section>
+      <!-- Mobiles Filter -->
+      <section class="filter-category">
         <h3 onclick="toggleSubOptions(this)">Mobiles</h3>
         <ul class="sub-options">
           <li>Apple</li>
@@ -51,9 +51,9 @@
           <li>Redmi</li>
           <li>OnePlus</li>
         </ul>
-      </div>
-      <!-- PC Motherboard & Electronics Filter Category -->
-      <div class="filter-category">
+      </section>
+      <!-- PC Motherboard & Electronics Filter -->
+      <section class="filter-category">
         <h3 onclick="toggleSubOptions(this)">PC Motherboard & Electronics</h3>
         <ul class="sub-options">
           <li>Motherboards</li>
@@ -61,14 +61,14 @@
           <li>GPUs</li>
           <li>Other Electronics</li>
         </ul>
-      </div>
+      </section>
     </aside>
     
     <!-- Main Content Area -->
-    <main class="content">
+    <section class="content">
       <p>Content for detailed reviews will appear here based on your filter and search selections.</p>
-    </main>
-  </div>
+    </section>
+  </main>
   
   <script src="script.js"></script>
 </body>
