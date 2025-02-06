@@ -1,26 +1,33 @@
-/**
- * Toggles the display of sub-options for a filter category.
- * @param {HTMLElement} element - The header element clicked.
- */
+// script.js
+
+// Toggle function for sub-options
 function toggleSubOptions(element) {
   const subOptions = element.nextElementSibling;
-  subOptions.style.display = subOptions.style.display === "block" ? "none" : "block";
+  if (subOptions.style.display === "block") {
+    subOptions.style.display = "none";
+  } else {
+    subOptions.style.display = "block";
+  }
 }
 
-// Language Switcher Functionality
-const englishBtn = document.getElementById('englishBtn');
-const hinglishBtn = document.getElementById('hinglishBtn');
+// Language Switcher functionality
+const englishBtn = document.getElementById('english-btn');
+const hinglishBtn = document.getElementById('hinglish-btn');
 
-englishBtn.addEventListener('click', () => {
-  englishBtn.classList.add('active');
-  hinglishBtn.classList.remove('active');
-  // Implement language switching logic here
-  console.log("Switched to English");
-});
+if (englishBtn && hinglishBtn) {
+  englishBtn.addEventListener('click', function() {
+    englishBtn.classList.add('active');
+    hinglishBtn.classList.remove('active');
+    // Add further functionality to switch content language if required.
+    alert("Switched to English");
+  });
 
-hinglishBtn.addEventListener('click', () => {
-  hinglishBtn.classList.add('active');
-  englishBtn.classList.remove('active');
-  // Implement language switching logic here
-  console.log("Switched to Hinglish");
-});
+  hinglishBtn.addEventListener('click', function() {
+    hinglishBtn.classList.add('active');
+    englishBtn.classList.remove('active');
+    // Add further functionality to switch content language if required.
+    alert("Switched to Hinglish");
+  });
+} else {
+  console.error("Language buttons not found");
+}
