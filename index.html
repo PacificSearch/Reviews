@@ -57,7 +57,7 @@
             color: white;
         }
 
-        /* Search Container */
+        /* Search Section */
         .search-container {
             max-width: 800px;
             margin: 1rem auto;
@@ -66,7 +66,6 @@
             text-align: center;
         }
 
-        /* Search Bar */
         .search-bar {
             width: 100%;
             height: 46px;
@@ -79,28 +78,9 @@
         }
 
         /* Filter Section */
-        .filter-toggle {
-            position: absolute;
-            left: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 32px;
-            height: 32px;
-            background: #007bff;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            color: white;
-        }
-
         .filter-panel {
-            display: none;
-            position: absolute;
-            left: 1rem;
-            top: 3.5rem;
+            width: 280px;
             background: white;
-            width: 260px;
             padding: 1rem;
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -108,14 +88,39 @@
         }
 
         .filter-category {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
             font-weight: bold;
             margin-top: 1rem;
+            cursor: pointer;
         }
 
-        .filter-option {
-            margin-left: 1rem;
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f1f1;
+        }
+
+        .category-icon img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .sub-options {
+            display: none;
+            margin-left: 2rem;
             font-size: 0.9rem;
+        }
+
+        .sub-options div {
             cursor: pointer;
+            margin: 5px 0;
         }
 
         /* Scrolling Message */
@@ -131,25 +136,6 @@
             color: #007bff;
             font-weight: 600;
         }
-
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .header {
-                flex-direction: row;
-                justify-content: space-between;
-                height: auto;
-            }
-            .logo {
-                position: static;
-            }
-            .lang-switcher {
-                position: static;
-            }
-            .search-bar {
-                height: 42px;
-                font-size: 0.9rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -162,58 +148,79 @@
     </header>
 
     <div class="search-container">
-        <div class="filter-toggle" onclick="toggleFilters()">⚙</div>
         <input type="text" class="search-bar" placeholder="Search reviews...">
-
         <!-- Scrolling Message -->
         <div class="scroll-message">
-            <marquee>Welcome to Pacific Search. Find detailed reviews for your favorite products. Use the filters or search bar to get started!</marquee>
+            <marquee>Welcome to Pacific Search. Find detailed reviews for your favorite products.</marquee>
         </div>
 
         <!-- Filter Section -->
-        <div class="filter-panel" id="filterPanel">
-            <div class="filter-category">Cars</div>
-            <div class="filter-option">BMW</div>
-            <div class="filter-option">Audi</div>
-            <div class="filter-option">Tesla</div>
+        <div class="filter-panel">
+            <!-- Cars -->
+            <div class="filter-category" onclick="toggleSubOptions('cars')">
+                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/1048/1048315.png" alt="Car"></div>
+                Cars
+            </div>
+            <div id="cars" class="sub-options">
+                <div>BMW</div>
+                <div>Audi</div>
+                <div>Tesla</div>
+            </div>
 
-            <div class="filter-category">Mobiles</div>
-            <div class="filter-option">Apple</div>
-            <div class="filter-option">Samsung</div>
-            <div class="filter-option">OnePlus</div>
+            <!-- Mobiles -->
+            <div class="filter-category" onclick="toggleSubOptions('mobiles')">
+                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/3064/3064197.png" alt="Mobile"></div>
+                Mobiles
+            </div>
+            <div id="mobiles" class="sub-options">
+                <div>Apple</div>
+                <div>Samsung</div>
+                <div>OnePlus</div>
+            </div>
 
-            <div class="filter-category">Motherboards</div>
-            <div class="filter-option">ASUS</div>
-            <div class="filter-option">Gigabyte</div>
-            <div class="filter-option">MSI</div>
+            <!-- Monitors -->
+            <div class="filter-category" onclick="toggleSubOptions('monitors')">
+                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/545/545682.png" alt="Monitor"></div>
+                Monitors
+            </div>
+            <div id="monitors" class="sub-options">
+                <div>LG</div>
+                <div>Dell</div>
+                <div>HP</div>
+            </div>
 
-            <div class="filter-category">PC Processors</div>
-            <div class="filter-option">Intel</div>
-            <div class="filter-option">AMD</div>
+            <!-- CPU -->
+            <div class="filter-category" onclick="toggleSubOptions('cpu')">
+                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/5061/5061807.png" alt="CPU"></div>
+                CPU
+            </div>
+            <div id="cpu" class="sub-options">
+                <div>Intel</div>
+                <div>AMD</div>
+            </div>
+
+            <!-- Laptops -->
+            <div class="filter-category" onclick="toggleSubOptions('laptops')">
+                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/1055/1055666.png" alt="Laptop"></div>
+                Laptops
+            </div>
+            <div id="laptops" class="sub-options">
+                <div>MacBook</div>
+                <div>Dell</div>
+                <div>Asus</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Toggle Filter Panel
-        function toggleFilters() {
-            const panel = document.getElementById('filterPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // Language Switching
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelector('.lang-btn.active').classList.remove('active');
-                this.classList.add('active');
-            });
-        });
-
-        // Close filter panel when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.filter-toggle') && !e.target.closest('.filter-panel')) {
-                document.getElementById('filterPanel').style.display = 'none';
+        function toggleSubOptions(id) {
+            let element = document.getElementById(id);
+            if (element.style.display === "block") {
+                element.style.display = "none";
+            } else {
+                element.style.display = "block";
             }
-        });
+        }
     </script>
 </body>
 </html>
