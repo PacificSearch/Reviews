@@ -1,0 +1,170 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header: Blue Ribbon with Logo and Language Switcher */
+header {
+  background: #007BFF;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.language-switcher {
+  display: flex;
+  gap: 10px;
+}
+
+.language-switcher button {
+  background: #fff;
+  color: #007BFF;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.language-switcher button.active {
+  background: #0056b3;
+  color: #fff;
+}
+
+/* Search Bar */
+.search-container {
+  background: #fff;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.search-container input[type="text"] {
+  width: 80%;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Marquee-style Scrolling Welcome Message */
+.marquee-container {
+  background: #e9ecef;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee {
+  display: inline-block;
+  padding: 10px 0;
+  animation: scroll-left 15s linear infinite;
+  font-size: 16px;
+  color: #333;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Main Layout */
+.container {
+  display: flex;
+  margin: 20px;
+}
+
+/* Sidebar Filter Section */
+.sidebar {
+  width: 250px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.filter-category {
+  margin-bottom: 15px;
+}
+
+.filter-category h3 {
+  font-size: 18px;
+  padding: 10px;
+  background: #f1f1f1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.filter-category h3:hover {
+  background: #e2e2e2;
+}
+
+.sub-options {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 5px;
+  display: none;
+}
+
+.sub-options li {
+  padding: 5px 0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.sub-options li:hover {
+  color: #007BFF;
+}
+
+/* Content Section */
+.content {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  
+  .search-container input[type="text"] {
+    width: 95%;
+  }
+}
