@@ -78,9 +78,28 @@
         }
 
         /* Filter Section */
+.filter-toggle {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            background: #007bff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            color: white;
+        }
+
         .filter-panel {
-            width: 280px;
+            display: none;
+            position: absolute;
+            left: 1rem;
+            top: 3.5rem;
             background: white;
+            width: 260px;
             padding: 1rem;
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -88,39 +107,14 @@
         }
 
         .filter-category {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
             font-weight: bold;
             margin-top: 1rem;
-            cursor: pointer;
         }
 
-        .category-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f1f1f1;
-        }
-
-        .category-icon img {
-            width: 30px;
-            height: 30px;
-        }
-
-        .sub-options {
-            display: none;
-            margin-left: 2rem;
+        .filter-option {
+            margin-left: 1rem;
             font-size: 0.9rem;
-        }
-
-        .sub-options div {
             cursor: pointer;
-            margin: 5px 0;
         }
 
         /* Scrolling Message */
