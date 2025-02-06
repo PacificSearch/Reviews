@@ -33,7 +33,7 @@
             font-weight: 600;
         }
 
-        /* Language Switcher */
+        /* Language Switcher (Fixed on Right Side) */
         .lang-switcher {
             display: flex;
             gap: 0.5rem;
@@ -61,6 +61,7 @@
             margin: 1rem auto;
             position: relative;
             padding: 0 1rem;
+            text-align: center;
         }
 
         /* Search Bar */
@@ -107,6 +108,33 @@
             z-index: 1000;
         }
 
+        .filter-category {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .filter-option {
+            margin-left: 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* Marquee (Scrolling Message Below Search Bar) */
+        .scroll-message {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .scroll-message marquee {
+            font-size: 1rem;
+            color: #007bff;
+            font-weight: 600;
+        }
+
         /* Responsive Design */
         @media (min-width: 768px) {
             .logo {
@@ -129,10 +157,6 @@
                 width: 100%;
                 text-align: center;
             }
-            .lang-switcher {
-                width: 100%;
-                justify-content: center;
-            }
             .search-bar {
                 height: 42px;
                 font-size: 0.9rem;
@@ -151,12 +175,32 @@
 
     <div class="search-container">
         <div class="filter-toggle" onclick="toggleFilters()">⚙</div>
-        <input type="text" class="search-bar" placeholder="Search products...">
+        <input type="text" class="search-bar" placeholder="Search reviews...">
+        
+        <!-- Scrolling Message -->
+        <div class="scroll-message">
+            <marquee>Welcome to Pacific Search. Find detailed reviews for your favorite products. Use the filters or search bar to get started!</marquee>
+        </div>
+
         <div class="filter-panel" id="filterPanel">
-            <!-- Filter content here -->
-            <p>Filter Option 1</p>
-            <p>Filter Option 2</p>
-            <!-- Add additional filter options as needed -->
+            <div class="filter-category">Cars</div>
+            <div class="filter-option">BMW</div>
+            <div class="filter-option">Audi</div>
+            <div class="filter-option">Tesla</div>
+
+            <div class="filter-category">Mobiles</div>
+            <div class="filter-option">Apple</div>
+            <div class="filter-option">Samsung</div>
+            <div class="filter-option">OnePlus</div>
+
+            <div class="filter-category">Motherboards</div>
+            <div class="filter-option">ASUS</div>
+            <div class="filter-option">Gigabyte</div>
+            <div class="filter-option">MSI</div>
+
+            <div class="filter-category">PC Processors</div>
+            <div class="filter-option">Intel</div>
+            <div class="filter-option">AMD</div>
         </div>
     </div>
 
