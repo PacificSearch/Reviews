@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacific Search</title>
     <style>
-        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
@@ -22,9 +21,10 @@
             background: #007bff;
             padding: 1rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             position: relative;
+            height: 60px;
         }
 
         .logo {
@@ -33,10 +33,12 @@
             font-weight: 600;
         }
 
-        /* Language Switcher (Fixed on Right Side) */
+        /* Language Switcher */
         .lang-switcher {
             display: flex;
             gap: 0.5rem;
+            position: absolute;
+            right: 1rem;
         }
 
         .lang-btn {
@@ -74,10 +76,9 @@
             font-size: 0.95rem;
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
         }
 
-        /* Filter Toggle */
+        /* Filter Section */
         .filter-toggle {
             position: absolute;
             left: 1.5rem;
@@ -90,11 +91,9 @@
             display: grid;
             place-items: center;
             cursor: pointer;
-            z-index: 2;
             color: white;
         }
 
-        /* Filter Dropdown */
         .filter-panel {
             display: none;
             position: absolute;
@@ -119,14 +118,12 @@
             cursor: pointer;
         }
 
-        /* Marquee (Scrolling Message Below Search Bar) */
+        /* Scrolling Message */
         .scroll-message {
             margin-top: 10px;
             font-size: 0.9rem;
             font-weight: bold;
             color: #333;
-            white-space: nowrap;
-            overflow: hidden;
         }
 
         .scroll-message marquee {
@@ -136,26 +133,17 @@
         }
 
         /* Responsive Design */
-        @media (min-width: 768px) {
-            .logo {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            .header {
-                padding: 1rem 2rem;
-            }
-        }
-
         @media (max-width: 480px) {
             .header {
-                flex-wrap: wrap;
-                gap: 0.75rem;
-                padding: 0.75rem;
+                flex-direction: row;
+                justify-content: space-between;
+                height: auto;
             }
             .logo {
-                width: 100%;
-                text-align: center;
+                position: static;
+            }
+            .lang-switcher {
+                position: static;
             }
             .search-bar {
                 height: 42px;
@@ -176,12 +164,13 @@
     <div class="search-container">
         <div class="filter-toggle" onclick="toggleFilters()">⚙</div>
         <input type="text" class="search-bar" placeholder="Search reviews...">
-        
+
         <!-- Scrolling Message -->
         <div class="scroll-message">
             <marquee>Welcome to Pacific Search. Find detailed reviews for your favorite products. Use the filters or search bar to get started!</marquee>
         </div>
 
+        <!-- Filter Section -->
         <div class="filter-panel" id="filterPanel">
             <div class="filter-category">Cars</div>
             <div class="filter-option">BMW</div>
@@ -205,7 +194,7 @@
     </div>
 
     <script>
-        // Filter Toggle Functionality
+        // Toggle Filter Panel
         function toggleFilters() {
             const panel = document.getElementById('filterPanel');
             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
