@@ -1,25 +1,50 @@
-/* CSS Reset */
+/* styles.css */
+
+/* Reset and basic styles */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  color: #333;
   line-height: 1.6;
+  background: #f4f4f4;
 }
 
-/* Header: Blue Ribbon with Logo and Language Switcher */
+/* Layout */
+.container {
+  display: flex;
+  margin: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 4px;
+  margin-right: 20px;
+}
+
+.content {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 400px;
+}
+
+/* Header */
 header {
   background: #007BFF;
   color: #fff;
-  padding: 15px 20px;
+  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -41,7 +66,6 @@ header {
   border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
-  transition: background 0.3s ease;
 }
 
 .language-switcher button.active {
@@ -52,7 +76,7 @@ header {
 /* Search Bar */
 .search-container {
   background: #fff;
-  padding: 15px 20px;
+  padding: 10px 20px;
   text-align: center;
 }
 
@@ -65,13 +89,13 @@ header {
   font-size: 16px;
 }
 
-/* Marquee-style Scrolling Welcome Message */
+/* Marquee-style scrolling welcome message */
 .marquee-container {
   background: #e9ecef;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
   overflow: hidden;
   white-space: nowrap;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .marquee {
@@ -91,33 +115,18 @@ header {
   }
 }
 
-/* Main Layout */
-.container {
-  display: flex;
-  margin: 20px;
-}
-
-/* Sidebar Filter Section */
-.sidebar {
-  width: 250px;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 4px;
-  margin-right: 20px;
-}
-
+/* Filter categories */
 .filter-category {
   margin-bottom: 15px;
 }
 
 .filter-category h3 {
   font-size: 18px;
+  cursor: pointer;
   padding: 10px;
   background: #f1f1f1;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s;
 }
 
 .filter-category h3:hover {
@@ -127,43 +136,31 @@ header {
 .sub-options {
   list-style: none;
   padding-left: 20px;
-  margin-top: 5px;
   display: none;
+  margin-top: 5px;
 }
 
 .sub-options li {
   padding: 5px 0;
-  font-size: 14px;
   cursor: pointer;
-  transition: color 0.3s ease;
+  font-size: 14px;
+  transition: color 0.3s;
 }
 
 .sub-options li:hover {
   color: #007BFF;
 }
 
-/* Content Section */
-.content {
-  flex: 1;
-  background: #fff;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  min-height: 400px;
-}
-
-/* Responsive Design */
+/* Responsive design */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
-  
   .sidebar {
     width: 100%;
     margin-right: 0;
     margin-bottom: 20px;
   }
-  
   .search-container input[type="text"] {
     width: 95%;
   }
