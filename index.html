@@ -7,19 +7,53 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header with Blue Ribbon -->
+  <!-- Header with Centered Logo -->
   <header>
-    <nav class="logo">Pacific Search</nav>
+    <div class="logo">Pacific Search</div>
     <div class="language-switcher">
       <button id="english-btn" class="active">English</button>
       <button id="hinglish-btn">Hinglish</button>
     </div>
   </header>
   
-  <!-- Search Bar -->
+  <!-- Search Bar with Filter Icon -->
   <section class="search-container">
+    <div class="filter-icon" onclick="toggleFilterOptions()">
+      &#9881; <!-- Gear icon for filters -->
+    </div>
     <input type="text" placeholder="Search...">
   </section>
+  
+  <!-- Filter Options -->
+  <div class="filter-options" id="filterOptions">
+    <div class="filter-category">
+      <h3 onclick="toggleSubOptions(this)">Cars</h3>
+      <ul class="sub-options">
+        <li>Sedan</li>
+        <li>SUV</li>
+        <li>Hatchback</li>
+        <li>Coupe</li>
+      </ul>
+    </div>
+    <div class="filter-category">
+      <h3 onclick="toggleSubOptions(this)">Mobiles</h3>
+      <ul class="sub-options">
+        <li>Apple</li>
+        <li>Samsung</li>
+        <li>Redmi</li>
+        <li>OnePlus</li>
+      </ul>
+    </div>
+    <div class="filter-category">
+      <h3 onclick="toggleSubOptions(this)">PC Motherboard & Electronics</h3>
+      <ul class="sub-options">
+        <li>Motherboards</li>
+        <li>Processors</li>
+        <li>GPUs</li>
+        <li>Other Electronics</li>
+      </ul>
+    </div>
+  </div>
   
   <!-- Scrolling Welcome Message -->
   <div class="marquee-container">
@@ -28,46 +62,9 @@
     </div>
   </div>
   
-  <!-- Main Layout: Sidebar Filters and Content -->
-  <main class="container">
-    <!-- Sidebar Filter Section -->
-    <aside class="sidebar">
-      <!-- Cars Filter -->
-      <section class="filter-category">
-        <h3 onclick="toggleSubOptions(this)">Cars</h3>
-        <ul class="sub-options">
-          <li>Sedan</li>
-          <li>SUV</li>
-          <li>Hatchback</li>
-          <li>Coupe</li>
-        </ul>
-      </section>
-      <!-- Mobiles Filter -->
-      <section class="filter-category">
-        <h3 onclick="toggleSubOptions(this)">Mobiles</h3>
-        <ul class="sub-options">
-          <li>Apple</li>
-          <li>Samsung</li>
-          <li>Redmi</li>
-          <li>OnePlus</li>
-        </ul>
-      </section>
-      <!-- PC Motherboard & Electronics Filter -->
-      <section class="filter-category">
-        <h3 onclick="toggleSubOptions(this)">PC Motherboard & Electronics</h3>
-        <ul class="sub-options">
-          <li>Motherboards</li>
-          <li>Processors</li>
-          <li>GPUs</li>
-          <li>Other Electronics</li>
-        </ul>
-      </section>
-    </aside>
-    
-    <!-- Main Content Area -->
-    <section class="content">
-      <p>Content for detailed reviews will appear here based on your filter and search selections.</p>
-    </section>
+  <!-- Main Content Area -->
+  <main class="content">
+    <p>Content for detailed reviews will appear here based on your filter and search selections.</p>
   </main>
   
   <script src="script.js"></script>
