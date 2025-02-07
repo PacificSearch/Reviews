@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Review</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <h1>Upload a New Review</h1>
+  
+  <!-- Flash messages for success or error -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+      {% for category, message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  
+  <!-- Review Upload Form -->
+  <form action="{{ url_for('upload_review') }}" method="POST">
+    <label for="category">Category:</label><br>
+    <select name="category" id="category" required>
+      <option value="Mobiles">Mobiles</option>
+      <option value="Cars">Cars</option>
+      <option value="Monitors">Monitors</option>
+      <option value="CPU">CPU</option>
+      <option value="Laptops">Laptops</option>
+      <!-- aur options add karein -->
+    </select>
+    <br><br>
+    
+    <label for="subcategory">Sub-category:</label><br>
+    <input type="text" name="subcategory" id="subcategory" placeholder="e.g., Apple" required>
+    <br><br>
+    
+    <label for="product_name">Product Name:</label><br>
+    <input type="text" name="product_name" id="product_name" placeholder="e.g., iPhone 16 Pro Max" required>
+    <br><br>
+    
+    <label for="review_text">Review:</label><br>
+    <textarea name="review_text" id="review_text" cols="30" rows="5" placeholder="Type your review here..." required></textarea>
+    <br><br>
+    
+    <input type="submit" value="Upload Review">
+  </form>
+  
+  <!-- Link to go back to Home Page -->
+  <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+</body>
+</html>
 
