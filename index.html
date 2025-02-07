@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pacific Search</title>
     <style>
+        /* Base Reset */
         * {
             margin: 0;
             padding: 0;
@@ -12,18 +13,18 @@
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: #f8f9fa;
         }
 
-        /* Header */
+        /* Header Section */
         .header {
             background: #007bff;
             padding: 1rem;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            height: 60px;
+            align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -32,185 +33,223 @@
             font-weight: 600;
         }
 
-        /* Search Section */
+        /* Language Switcher (Now Fixed to Right Side) */
+        .lang-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.25rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            color: #007bff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active {
+            background: #0056b3;
+            color: white;
+        }
+
+        /* Search Container */
         .search-container {
             max-width: 800px;
-            margin: 2rem auto;
+            margin: 1rem auto;
             position: relative;
+            padding: 0 1rem;
             text-align: center;
         }
 
+        /* Search Bar */
         .search-bar {
             width: 100%;
-            height: 50px;
-            padding: 0 1rem 0 4rem;
+            height: 46px;
+            padding: 0 1rem 0 3rem;
             border: 2px solid #007bff;
             border-radius: 2rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
-        /* Filter Button (Circular) */
-        .filter-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #007bff;
+        /* Filter Toggle (Circular Icon Button) */
+        .filter-toggle {
             position: absolute;
-            left: 0;
-            top: 0;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            z-index: 2;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         }
 
-        .filter-btn img {
-            width: 24px;
-            height: 24px;
-            filter: invert(1);
-        }
-
-        /* Dropdown Filter Section */
+        /* Filter Dropdown */
         .filter-panel {
-            width: 280px;
+            display: none;
+            position: absolute;
+            left: 1rem;
+            top: 3.5rem;
             background: white;
+            width: 260px;
             padding: 1rem;
             border-radius: 1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: absolute;
-            left: 0;
-            top: 60px;
-            display: none;
             z-index: 1000;
         }
 
         .filter-category {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1rem;
             font-weight: bold;
             margin-top: 1rem;
             cursor: pointer;
-        }
-
-        .category-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #f1f1f1;
         }
 
-        .category-icon img {
-            width: 30px;
-            height: 30px;
+        .filter-category img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
         }
 
-        .sub-options {
+        .filter-options {
             display: none;
-            margin-left: 2rem;
+            padding-left: 1rem;
+        }
+
+        .filter-option {
             font-size: 0.9rem;
-        }
-
-        .sub-options div {
             cursor: pointer;
-            margin: 5px 0;
         }
 
+        /* Scrolling Message Below Search Bar */
+        .scroll-message {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .scroll-message marquee {
+            font-size: 1rem;
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .header {
+                padding: 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+            .logo {
+                width: 100%;
+                text-align: center;
+            }
+            .search-bar {
+                height: 42px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="logo">Pacific Search</div>
+        <div class="lang-switcher">
+            <button class="lang-btn active">EN</button>
+            <button class="lang-btn">HI</button>
+        </div>
     </header>
 
     <div class="search-container">
-        <!-- Filter Button (Circular) -->
-        <div class="filter-btn" onclick="toggleFilter()">
-            <img src="https://cdn-icons-png.flaticon.com/128/2089/2089799.png" alt="Filter">
+        <div class="filter-toggle" onclick="toggleFilters()">⚙</div>
+        <input type="text" class="search-bar" placeholder="Search reviews...">
+        
+        <!-- Scrolling Message -->
+        <div class="scroll-message">
+            <marquee>Welcome to Pacific Search. Find detailed reviews for your favorite products. Use the filters or search bar to get started!</marquee>
         </div>
 
-        <!-- Search Bar -->
-        <input type="text" class="search-bar" placeholder="Search reviews...">
-
-        <!-- Filter Dropdown -->
-        <div id="filter-panel" class="filter-panel">
-            <!-- Cars -->
+        <div class="filter-panel" id="filterPanel">
             <div class="filter-category" onclick="toggleSubOptions('cars')">
-                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/1048/1048315.png" alt="Car"></div>
-                Cars
+                <img src="car-icon.png" alt="Car"> Cars
             </div>
-            <div id="cars" class="sub-options">
-                <div>BMW</div>
-                <div>Audi</div>
-                <div>Tesla</div>
+            <div class="filter-options" id="cars">
+                <div class="filter-option">BMW</div>
+                <div class="filter-option">Audi</div>
+                <div class="filter-option">Tesla</div>
             </div>
 
-            <!-- Mobiles -->
             <div class="filter-category" onclick="toggleSubOptions('mobiles')">
-                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/3064/3064197.png" alt="Mobile"></div>
-                Mobiles
+                <img src="mobile-icon.png" alt="Mobile"> Mobiles
             </div>
-            <div id="mobiles" class="sub-options">
-                <div>Apple</div>
-                <div>Samsung</div>
-                <div>OnePlus</div>
-            </div>
-
-            <!-- Monitors -->
-            <div class="filter-category" onclick="toggleSubOptions('monitors')">
-                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/545/545682.png" alt="Monitor"></div>
-                Monitors
-            </div>
-            <div id="monitors" class="sub-options">
-                <div>LG</div>
-                <div>Dell</div>
-                <div>HP</div>
+            <div class="filter-options" id="mobiles">
+                <div class="filter-option">Apple</div>
+                <div class="filter-option">Samsung</div>
+                <div class="filter-option">OnePlus</div>
             </div>
 
-            <!-- CPU -->
-            <div class="filter-category" onclick="toggleSubOptions('cpu')">
-                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/5061/5061807.png" alt="CPU"></div>
-                CPU
+            <div class="filter-category" onclick="toggleSubOptions('processors')">
+                <img src="cpu-icon.png" alt="Processor"> PC Processors
             </div>
-            <div id="cpu" class="sub-options">
-                <div>Intel</div>
-                <div>AMD</div>
-            </div>
-
-            <!-- Laptops -->
-            <div class="filter-category" onclick="toggleSubOptions('laptops')">
-                <div class="category-icon"><img src="https://cdn-icons-png.flaticon.com/128/1055/1055666.png" alt="Laptop"></div>
-                Laptops
-            </div>
-            <div id="laptops" class="sub-options">
-                <div>MacBook</div>
-                <div>Dell</div>
-                <div>Asus</div>
+            <div class="filter-options" id="processors">
+                <div class="filter-option">Intel</div>
+                <div class="filter-option">AMD</div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleFilter() {
-            let panel = document.getElementById('filter-panel');
-            panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
+        function toggleFilters() {
+            const panel = document.getElementById('filterPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
         }
 
-        function toggleSubOptions(id) {
-            let element = document.getElementById(id);
-            if (element.style.display === "block") {
-                element.style.display = "none";
-            } else {
-                element.style.display = "block";
-            }
+        function toggleSubOptions(category) {
+            const options = document.getElementById(category);
+            options.style.display = options.style.display === 'block' ? 'none' : 'block';
         }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelector('.lang-btn.active').classList.remove('active');
+                this.classList.add('active');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.filter-toggle') && !e.target.closest('.filter-panel')) {
+                document.getElementById('filterPanel').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
