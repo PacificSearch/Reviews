@@ -1,14 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask App</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="UTF-8">
+  <title>Pacific Search - Reviews</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Welcome to My Flask App!</h1>
-    <p>This page is rendered using Flask templates.</p>
+  <header>
+    <h1>Pacific Search Reviews</h1>
+  </header>
+  
+  <main>
+    {% if reviews %}
+      <ul>
+      {% for review in reviews %}
+        <li>
+          <strong>{{ review.category }} - {{ review.subcategory }}</strong> : {{ review.product_name }}<br>
+          {{ review.review_text }}
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <p>No reviews uploaded yet.</p>
+    {% endif %}
+  </main>
+  
+  <!-- Link to upload review form -->
+  <p><a href="{{ url_for('upload_review') }}">Upload a New Review</a></p>
 </body>
 </html>
