@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Upload Review</title>
+  <!-- Link to static CSS file -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
   <h1>Upload a New Review</h1>
   
-  <!-- Flash messages for success or error -->
+  <!-- Flash messages for feedback -->
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       <ul>
@@ -19,7 +20,6 @@
     {% endif %}
   {% endwith %}
   
-  <!-- Review Upload Form -->
   <form action="{{ url_for('upload_review') }}" method="POST">
     <label for="category">Category:</label><br>
     <select name="category" id="category" required>
@@ -28,7 +28,6 @@
       <option value="Monitors">Monitors</option>
       <option value="CPU">CPU</option>
       <option value="Laptops">Laptops</option>
-      <!-- aur options add karein -->
     </select>
     <br><br>
     
@@ -47,9 +46,9 @@
     <input type="submit" value="Upload Review">
   </form>
   
-  <!-- Link to go back to Home Page -->
   <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+  
+  <!-- Link to static JS file -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
-
