@@ -1,25 +1,35 @@
-function toggleFilters() {
-  var panel = document.getElementById("filterPanel");
-  if (!panel) return; // Agar element nahi milta, to function exit kare
+// Ensure the DOM content is fully loaded before running JS code
+document.addEventListener("DOMContentLoaded", function() {
+  // Language switch functionality: find all buttons with class 'lang-btn'
+  var langButtons = document.querySelectorAll('.lang-btn');
+  
+  langButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      // Remove 'active' class from all language buttons
+      langButtons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      // Add 'active' class to the clicked button
+      this.classList.add('active');
+      // Optionally, perform any further action based on the selected language
+      console.log("Language switched to:", this.textContent);
+    });
+  });
+  
+  // (Optional) If you already have filter toggle functions in this file, include them as well:
+  window.toggleFilters = function() {
+    var panel = document.getElementById("filterPanel");
+    if (panel) {
+      var currentDisplay = window.getComputedStyle(panel).display;
+      panel.style.display = (currentDisplay === "none") ? "block" : "none";
+    }
+  };
 
-  // Compute current display value from CSS
-  var computedDisplay = window.getComputedStyle(panel).display;
-  if (computedDisplay === "none") {
-    panel.style.display = "block";
-  } else {
-    panel.style.display = "none";
-  }
-}
-
-function toggleSubOptions(id) {
-  var sub = document.getElementById(id);
-  if (!sub) return; // Agar element nahi milta, to function exit kare
-
-  // Compute current display value from CSS
-  var computedDisplay = window.getComputedStyle(sub).display;
-  if (computedDisplay === "none") {
-    sub.style.display = "block";
-  } else {
-    sub.style.display = "none";
-  }
-}
+  window.toggleSubOptions = function(id) {
+    var sub = document.getElementById(id);
+    if (sub) {
+      var currentDisplay = window.getComputedStyle(sub).display;
+      sub.style.display = (currentDisplay === "none") ? "block" : "none";
+    }
+  };
+});
