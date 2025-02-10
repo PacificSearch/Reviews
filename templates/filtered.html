@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reviews for {{ subcategory }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* Additional CSS for horizontal grid layout */
+    .reviews-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .review-card {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      width: 300px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Pacific Search</div>
+    <div class="lang-switcher">
+      <button class="lang-btn active">EN</button>
+      <button class="lang-btn">HI</button>
+    </div>
+  </header>
+  
+  <h2 style="text-align:center;">Reviews for {{ subcategory }}</h2>
+  
+  <div class="reviews-grid">
+    {% if reviews %}
+      {% for review in reviews %}
+        <div class="review-card">
+          <h3>{{ review.product_name }}</h3>
+          <p>{{ review.review_text }}</p>
+          <small>{{ review.category }} - {{ review.subcategory }} ({{ review.language }})</small>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No reviews available for {{ subcategory }}.</p>
+    {% endif %}
+  </div>
+  
+  <p style="text-align:center;"><a href="{{ url_for('index') }}">Back to Home</a></p>
+  
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
