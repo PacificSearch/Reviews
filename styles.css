@@ -4,29 +4,24 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: #f8f9fa;
-  line-height: 1.6;
-  padding: 0;
-  margin: 0;
+  background: #f8f9fa;
 }
 
 /* Header Section */
 .header {
-  background-color: #007bff;
+  background: #007bff;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 60px;
 }
-
 .logo {
   color: white;
   font-size: 1.4rem;
-  font-weight: 600;
+  font-weight: bold;
 }
 
 /* Language Switcher */
@@ -34,20 +29,18 @@ body {
   display: flex;
   gap: 0.5rem;
 }
-
 .lang-btn {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   border: none;
-  padding: 0.25rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 1rem;
   font-size: 0.75rem;
   color: #007bff;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
-
 .lang-btn.active {
-  background-color: #0056b3;
+  background: #0056b3;
   color: white;
 }
 
@@ -58,7 +51,6 @@ body {
   position: relative;
   text-align: center;
 }
-
 .search-bar {
   width: 100%;
   height: 50px;
@@ -66,8 +58,8 @@ body {
   border: 2px solid #007bff;
   border-radius: 2rem;
   font-size: 1rem;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* Filter Toggle Button (Circular Icon) */
@@ -80,60 +72,56 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #007bff;
+  background: #007bff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 2;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  font-size: 1.2rem;
   color: white;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
-/* Filter Dropdown Panel */
+/* Filter Panel */
 .filter-panel {
   display: none;
   position: absolute;
   left: 0;
   top: 60px;
   width: 280px;
-  background-color: white;
+  background: white;
   padding: 1rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   z-index: 1000;
 }
-
 .filter-category {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1rem;
   font-weight: bold;
   margin-top: 1rem;
   cursor: pointer;
 }
-
 .filter-category img {
   width: 24px;
   height: 24px;
   border-radius: 50%;
   margin-right: 8px;
 }
-
 .filter-options {
-  display: none;
   padding-left: 1rem;
   margin-top: 0.5rem;
 }
-
 .filter-option {
+  display: block;
   font-size: 0.9rem;
-  cursor: pointer;
   margin: 0.3rem 0;
-  text-decoration: none;
   color: #007bff;
+  text-decoration: none;
+}
+.filter-option:hover {
+  text-decoration: underline;
 }
 
 /* Scrolling Message */
@@ -145,27 +133,10 @@ body {
   white-space: nowrap;
   overflow: hidden;
 }
-
 .scroll-message marquee {
   font-size: 1rem;
   color: #007bff;
   font-weight: 600;
-}
-
-/* Reviews Grid for Filtered Page */
-.reviews-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin: 1rem 0;
-}
-
-.review-card {
-  border: 1px solid #ddd;
-  padding: 1rem;
-  width: 300px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
