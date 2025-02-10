@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Upload Review</title>
-  <!-- Link to static CSS file -->
+  <!-- Static CSS reference: ensure you use Flask's url_for for production -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -13,14 +13,24 @@
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       <ul>
-      {% for category, message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
+        {% for category, message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
       </ul>
     {% endif %}
   {% endwith %}
   
+  <!-- Updated Review Upload Form -->
   <form action="{{ url_for('upload_review') }}" method="POST">
+    <!-- Language Selection -->
+    <label for="language">Language:</label><br>
+    <select name="language" id="language" required>
+      <option value="EN">English</option>
+      <option value="HI">Hinglish</option>
+    </select>
+    <br><br>
+    
+    <!-- Category Selection -->
     <label for="category">Category:</label><br>
     <select name="category" id="category" required>
       <option value="Mobiles">Mobiles</option>
@@ -31,14 +41,26 @@
     </select>
     <br><br>
     
-    <label for="subcategory">Sub-category:</label><br>
-    <input type="text" name="subcategory" id="subcategory" placeholder="e.g., Apple" required>
+    <!-- Subcategory Selection -->
+    <!-- Note: Is example mein static subcategories diye gaye hain. 
+         Agar aap dynamic dependent dropdown chahte hain, to extra JS code lagana hoga. -->
+    <label for="subcategory">Subcategory:</label><br>
+    <select name="subcategory" id="subcategory" required>
+      <option value="">Select Subcategory</option>
+      <!-- Yahan example ke liye, mobiles ke subcategories -->
+      <option value="Apple">Apple</option>
+      <option value="Samsung">Samsung</option>
+      <option value="OnePlus">OnePlus</option>
+      <!-- Agar category change ho to different subcategories dikhane hain, to JS se dynamic karna padega -->
+    </select>
     <br><br>
     
+    <!-- Product Name Input -->
     <label for="product_name">Product Name:</label><br>
     <input type="text" name="product_name" id="product_name" placeholder="e.g., iPhone 16 Pro Max" required>
     <br><br>
     
+    <!-- Review Text Input -->
     <label for="review_text">Review:</label><br>
     <textarea name="review_text" id="review_text" cols="30" rows="5" placeholder="Type your review here..." required></textarea>
     <br><br>
@@ -48,7 +70,7 @@
   
   <p><a href="{{ url_for('index') }}">Back to Home</a></p>
   
-  <!-- Link to static JS file -->
+  <!-- Static JS file reference -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
