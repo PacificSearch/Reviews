@@ -3,14 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Pacific Search - Reviews</title>
-  <!-- Static CSS file reference using url_for -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
   <header class="header">
-    <h1>Pacific Search Reviews</h1>
+    <div class="logo">Pacific Search</div>
+    <div class="lang-switcher">
+      <button class="lang-btn active">EN</button>
+      <button class="lang-btn">HI</button>
+    </div>
   </header>
-  
+
+  <div class="search-container">
+    <!-- Filter Toggle Button (Circular Icon) -->
+    <div class="filter-toggle" onclick="toggleFilters()">⚙</div>
+    <input type="text" class="search-bar" placeholder="Search reviews...">
+    
+    <!-- Scrolling Message -->
+    <div class="scroll-message">
+      <marquee>Welcome to Pacific Search. Find detailed reviews for your favorite products. Use the filters or search bar to get started!</marquee>
+    </div>
+    
+    <!-- Filter Dropdown Panel -->
+    <div class="filter-panel" id="filterPanel">
+      <!-- Example: Mobiles category -->
+      <div class="filter-category">
+        <img src="https://cdn-icons-png.flaticon.com/128/3064/3064197.png" alt="Mobile Icon"> Mobiles
+      </div>
+      <div class="filter-options" id="mobiles">
+        <!-- Subcategory links: clicking them takes you to /filter route -->
+        <a href="{{ url_for('filter_reviews') }}?subcategory=Apple" class="filter-option">Apple</a>
+        <a href="{{ url_for('filter_reviews') }}?subcategory=Samsung" class="filter-option">Samsung</a>
+        <a href="{{ url_for('filter_reviews') }}?subcategory=OnePlus" class="filter-option">OnePlus</a>
+      </div>
+      <!-- Add similar blocks for other categories if needed -->
+    </div>
+  </div>
+
   <main>
     {% if reviews %}
       <ul>
@@ -26,10 +55,8 @@
     {% endif %}
   </main>
   
-  <!-- Link to upload review form -->
   <p><a href="{{ url_for('upload_review') }}">Upload a New Review</a></p>
   
-  <!-- Static JS file reference using url_for -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
