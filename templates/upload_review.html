@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Upload Review</title>
-  <!-- Static CSS reference: ensure you use Flask's url_for for production -->
+  <!-- CSS file reference using Flask's url_for -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -20,7 +20,6 @@
     {% endif %}
   {% endwith %}
   
-  <!-- Updated Review Upload Form -->
   <form action="{{ url_for('upload_review') }}" method="POST">
     <!-- Language Selection -->
     <label for="language">Language:</label><br>
@@ -33,6 +32,7 @@
     <!-- Category Selection -->
     <label for="category">Category:</label><br>
     <select name="category" id="category" required>
+      <option value="">Select Category</option>
       <option value="Mobiles">Mobiles</option>
       <option value="Cars">Cars</option>
       <option value="Monitors">Monitors</option>
@@ -41,17 +41,10 @@
     </select>
     <br><br>
     
-    <!-- Subcategory Selection -->
-    <!-- Note: Is example mein static subcategories diye gaye hain. 
-         Agar aap dynamic dependent dropdown chahte hain, to extra JS code lagana hoga. -->
+    <!-- Subcategory Selection (will update dynamically based on category) -->
     <label for="subcategory">Subcategory:</label><br>
     <select name="subcategory" id="subcategory" required>
       <option value="">Select Subcategory</option>
-      <!-- Yahan example ke liye, mobiles ke subcategories -->
-      <option value="Apple">Apple</option>
-      <option value="Samsung">Samsung</option>
-      <option value="OnePlus">OnePlus</option>
-      <!-- Agar category change ho to different subcategories dikhane hain, to JS se dynamic karna padega -->
     </select>
     <br><br>
     
@@ -62,7 +55,7 @@
     
     <!-- Review Text Input -->
     <label for="review_text">Review:</label><br>
-    <textarea name="review_text" id="review_text" cols="30" rows="5" placeholder="Type your review here..." required></textarea>
+    <textarea name="review_text" id="review_text" rows="5" placeholder="Enter review here" required></textarea>
     <br><br>
     
     <input type="submit" value="Upload Review">
@@ -70,7 +63,36 @@
   
   <p><a href="{{ url_for('index') }}">Back to Home</a></p>
   
-  <!-- Static JS file reference -->
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <!-- JavaScript to dynamically update the subcategory dropdown -->
+  <script>
+    // Object mapping categories to their subcategories.
+    const subcategories = {
+      "Mobiles": ["Apple", "Samsung", "OnePlus"],
+      "Cars": ["BMW", "Audi", "Tesla"],
+      "Monitors": ["LG", "Dell", "HP"],
+      "CPU": ["Intel", "AMD"],
+      "Laptops": ["MacBook", "Dell", "Asus"]
+    };
+
+    // Get references to the category and subcategory dropdowns.
+    const categorySelect = document.getElementById('category');
+    const subcategorySelect = document.getElementById('subcategory');
+
+    // Listen for changes in the category dropdown.
+    categorySelect.addEventListener('change', function() {
+      const selectedCategory = this.value;
+      // Clear current options.
+      subcategorySelect.innerHTML = '<option value="">Select Subcategory</option>';
+      // If the selected category exists in our mapping, populate the subcategory dropdown.
+      if (subcategories[selectedCategory]) {
+        subcategories[selectedCategory].forEach(function(subcat) {
+          const option = document.createElement('option');
+          option.value = subcat;
+          option.textContent = subcat;
+          subcategorySelect.appendChild(option);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
