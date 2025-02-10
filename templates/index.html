@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Pacific Search - Reviews</title>
+  <!-- Static CSS file reference using url_for -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -26,28 +27,42 @@
     
     <!-- Filter Dropdown Panel -->
     <div class="filter-panel" id="filterPanel">
-      <!-- Example: Mobiles category -->
+      <!-- Example: Mobiles category with subcategories as links -->
       <div class="filter-category">
         <img src="https://cdn-icons-png.flaticon.com/128/3064/3064197.png" alt="Mobile Icon"> Mobiles
       </div>
       <div class="filter-options" id="mobiles">
-        <!-- Subcategory links: clicking them takes you to /filter route -->
-        <a href="{{ url_for('filter_reviews') }}?subcategory=Apple" class="filter-option">Apple</a>
-        <a href="{{ url_for('filter_reviews') }}?subcategory=Samsung" class="filter-option">Samsung</a>
-        <a href="{{ url_for('filter_reviews') }}?subcategory=OnePlus" class="filter-option">OnePlus</a>
+        <!-- Clicking these links will reload the index with filtered reviews -->
+        <a href="{{ url_for('index') }}?subcategory=Apple" class="filter-option">Apple</a>
+        <a href="{{ url_for('index') }}?subcategory=Samsung" class="filter-option">Samsung</a>
+        <a href="{{ url_for('index') }}?subcategory=OnePlus" class="filter-option">OnePlus</a>
       </div>
-      <!-- Add similar blocks for other categories if needed -->
+      <!-- Aap anya categories ke liye similar blocks add kar sakte hain -->
     </div>
   </div>
 
   <main>
+    {% if selected_subcategory %}
+      <h2 style="text-align:center;">Reviews for {{ selected_subcategory }}</h2>
+    {% endif %}
     {% if reviews %}
       <ul>
       {% for review in reviews %}
         <li>
-          <strong>{{ review.category }} - {{ review.subcategory }}</strong> : {{ review.product_name }}<br>
+          <strong>{{ review.category }} - {{ review.subcategory }} ({{ review.language }})</strong> : {{ review.product_name }}<br>
           {{ review.review_text }}
         </li>
+        {% for review in reviews %}
+  <li>
+    <strong>{{ review.category }} - {{ review.subcategory }} ({{ review.language }})</strong> : {{ review.product_name }}<br>
+    {{ review.review_text }}
+    <!-- Delete form for each review -->
+    <form action="{{ url_for('delete_review', review_id=review.id) }}" method="POST" onsubmit="return confirm('Kya aap is review ko delete karna chahte hain?');" style="display:inline;">
+      <button type="submit">Delete</button>
+    </form>
+  </li>
+{% endfor %}
+
       {% endfor %}
       </ul>
     {% else %}
@@ -55,8 +70,31 @@
     {% endif %}
   </main>
   
-  <p><a href="{{ url_for('upload_review') }}">Upload a New Review</a></p>
-  
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <p style="text-align:center;"><a href="{{ url_for('upload_review') }}">Upload a New Review</a></p>
+
+  <!-- Inline JavaScript for language switch and filter toggle -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Language switch functionality
+      var langButtons = document.querySelectorAll('.lang-btn');
+      langButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          langButtons.forEach(function(btn) {
+            btn.classList.remove('active');
+          });
+          this.classList.add('active');
+          console.log("Language switched to:", this.textContent);
+        });
+      });
+      
+      // Filter toggle functionality
+      window.toggleFilters = function() {
+        var panel = document.getElementById("filterPanel");
+        if (!panel) return;
+        var currentDisplay = window.getComputedStyle(panel).display;
+        panel.style.display = (currentDisplay === "none") ? "block" : "none";
+      };
+    });
+  </script>
 </body>
 </html>
