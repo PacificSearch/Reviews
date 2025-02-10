@@ -5,7 +5,7 @@
   <title>Reviews for {{ subcategory }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   <style>
-    /* Additional CSS for horizontal grid layout */
+    /* Simple horizontal grid layout for filtered reviews */
     .reviews-grid {
       display: flex;
       flex-wrap: wrap;
@@ -42,7 +42,7 @@
         </div>
       {% endfor %}
     {% else %}
-      <p>No reviews available for {{ subcategory }}.</p>
+      <p style="text-align:center;">No reviews available for {{ subcategory }}.</p>
     {% endif %}
   </div>
   
